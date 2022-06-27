@@ -1,0 +1,78 @@
+p {
+  margin: 0;
+}
+
+.cardDiv:hover {
+  
+}
+
+.main-cards{
+  display:flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > .main-cards-cards{
+    display:flex;
+    flex-wrap: wrap;  
+  }
+}
+.ant-card {
+  border-radius: 15px !important;
+}
+.ant-card-actions{
+  border-radius: 15px;
+}
+.floating-action {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+}
+
+
+.ds-slider-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  > .ds-slider-form {
+    height: 86vh;
+    overflow: hidden;
+    overflow-y: auto;
+    width: 103.2%;
+    padding-right: 20px;
+
+    .formInput-container {
+      margin: 10px 0;
+    }
+
+    > .formInput-container-config {
+      > .formInput-container-config-inputs {
+        > input {
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+  > .ds-slider-actions {
+    border-top: solid silver 1px;
+    height: 50px;
+    padding-top: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    // > .action-one {
+    // }
+    // > .action-one {
+    // }
+  }
+}
+.footer{
+  flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ant-drawer-body {
+  background: #ffff!important;
+}

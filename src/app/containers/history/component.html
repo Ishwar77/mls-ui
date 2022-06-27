@@ -1,0 +1,86 @@
+<!-- <div style="margin: 20px;">
+  <div nz-row>
+    <div nz-col>
+      <div style="margin: 4px;
+      padding-right: 12px;">
+        <button style="border-radius: 50px;" nz-button nzType="primary">
+          <i nz-icon nzType="arrow-left" (click)="goback()" style="cursor: pointer;"></i> </button>      </div>
+    </div>
+    <div nz-col nzSpan="18">
+      <div>
+        <nz-tabset [(nzSelectedIndex)]="index" nzType="editable-card" nzHideAdd>
+          <nz-tab *ngFor="let tab of tabs; let i = index" [nzTitle]="tab">
+            <div class="form-grid-container" *ngIf="resourceListValue.length">
+              <app-grid-component [pageSize]="10" [dataItems]="resourceListValue" (onEdit)="gridAction($event)"
+                (onSelect)="gridAction($event)">
+              </app-grid-component>
+            </div>
+            Content of {{ tab }}
+          </nz-tab>
+        </nz-tabset>
+      </div>
+    </div>
+    <div nz-col nzSpan="4">
+      <div nz-row style="margin-left: -200px;">
+        <button nz-col style=" border-radius: 6px;
+        height: 50px;
+        display: flex;
+        flex-direction: column;margin: 0px 10px 0px 10px;" nz-button nzType="default">
+          <i style="margin: 1px;width: 100%;" nz-icon nzType="form" nzTheme="outline"></i>
+          <span style="text-align: center;font-weight: 600;">Forms</span> </button>
+        <button nz-col style=" border-radius: 6px;
+        height: 50px;
+        display: flex;
+        flex-direction: column;margin: 0px 10px 0px 10px;" nz-button nzType="default">
+          <i style="margin: 1px;width: 100%;" nz-icon nzType="export" nzTheme="outline"></i>
+          <span style="text-align: center;font-weight: 600;">Export</span> </button>
+        <button nz-col style=" border-radius: 6px;
+        height: 50px;
+        display: flex;
+        flex-direction: column;margin: 0px 10px 0px 10px;" nz-button nzType="default" (click)="audit()">
+          <i style="margin: 1px;width: 100%;" nz-icon nzType="audit" nzTheme="outline"></i>
+          <span style="text-align: center;font-weight: 600;">Audit</span> </button>
+        <button nz-col style=" border-radius: 6px;
+        height: 50px;
+        display: flex;
+        flex-direction: column;margin: 0px 10px 0px 10px;" nz-button nzType="primary">
+          <i style="margin: 1px;width: 100%;" nz-icon nzType="history" nzTheme="outline"></i>
+          <span style="text-align: center;font-weight: 600;">History</span> </button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- 
+<div>
+  <div style="margin: 11px;
+  font-weight: 700;
+  font-size: larger;">
+    History
+  </div>
+  <app-grid-component [pageSize]="8" [dataItems]="resourceListValue">
+  </app-grid-component>
+</div> -->
+
+
+<div style="padding: 20px;">
+  <nz-table #basicTable [nzData]="historyData">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Element</th>
+        <th>UpdateLog</th>
+        <th>VersionCode</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.history_date | date }}</td>
+        <td>{{ data.element }}</td>
+        <td>{{ data.update_log }}</td>
+        <td>{{ data.version_code }}</td>
+        <td>{{ data.comment }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

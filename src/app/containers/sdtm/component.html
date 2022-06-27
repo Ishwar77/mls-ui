@@ -1,0 +1,95 @@
+<div class="als-list-container" fxFlexFill>
+  <div class="als-list-main-row" fxLayout="column" fxLayoutGap="20px">
+    <div fxLayout="column" class="als-tab-container">
+          <div fxLayout="column"  style="height: calc(100vh - 90px);">
+            <div fxLayout="column">
+              <div *ngIf="!_UIHandleData['isSDTMUIShow']" fxLayoutAlign="center center"
+                style="height: calc(100vh - 205px);">
+                <app-no-content></app-no-content>
+              </div>
+              <div style="padding-left:10px;padding-right: 10px;" fxLayout="column" fxLayoutAlign="start start"
+                *ngIf="_UIHandleData['isSDTMUIShow']">
+                <nz-tabset nzSize="large" (nzSelectChange)="sdtmTabselectionChange($event)">
+                  <nz-tab [nzTitle]="item" *ngFor="let item of _UIHandleData['sdtmTabList']"
+                    (nzSelect)="sdtmSelectedTab(item)">
+                    <div fxLayout="column">
+                      <app-grid-component [pageSize]="8" [dataItems]="_UIHandleData['sdtmlist']"
+                        (onEdit)="gridAction($event)" (onSelect)="gridAction($event)">
+                      </app-grid-component>
+                    </div>
+                  </nz-tab>
+                </nz-tabset>
+              </div>
+            </div>
+            <div class="sdtm-als-run-map">
+              <button class="sdtm-run-map-add" (click)="runMap()" nz-tooltip nzTooltipTitle="Run Map"
+                nzTooltipPlacement="bottom" nz-button nzType="primary" nzSize="large" nzShape="round">
+                <i nz-icon nzType="history" nzTheme="outline"></i>
+              </button>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+
+<nz-drawer nzPlacement="right" [nzWidth]="500" [nzClosable]="false" [nzVisible]="_isRunMapSliderVisible"
+  [nzTitle]="_UIHandleData['runMapSliderTitle']" (nzOnClose)="runMapSliderClose()">
+  <div fxLayout="column" fxFlexFill fxLayoutGap="20px">
+    <div fxLayout="column" style="overflow: auto;" class="sdtm-slider-body-content">
+      <div fxLayout="column" *ngFor="let item of _UIHandleData['uploadCardsList']">
+        <div class="sdtm-upload-card-container" *ngIf="_UIHandleData['uploadCardsList']">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutGap="10px">
+                <div fxLayout="column">
+                  <i style="font-size: 3rem;opacity: 0.7;" nz-icon nzType="file-done" nzTheme="outline"></i>
+                </div>
+                <div fxLayout="column">
+                  <div fxLayout="column" class="sdtm-upload-card-container-header">
+                    {{item ? item['oid'] : ''}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutGap="20px">
+                <div fxLayout="column">
+                  <nz-upload nzAction="https://maiora-life-sciences.herokuapp.com/api/upload/file/sdtmupload"
+                    (nzChange)="handleChange($event)">
+                    <i [class.filestatus]="success===true" class="sdtm-card-container-icons" nz-icon nz-tooltip
+                      nzTooltipTitle="Upload" nzTooltipPlacement="bottom" nzType="upload" nzTheme="outline"></i>
+                  </nz-upload>
+                </div>
+                <div fxLayout="column">
+                  <a [href]="sampleFilePath">
+                    <i class="sdtm-card-container-icons" nz-tooltip nzTooltipTitle="Download"
+                      nzTooltipPlacement="bottom" nz-icon nzType="download" nzTheme="outline"></i></a>
+                </div>
+                <div fxLayout="column">
+                  <i class="sdtm-card-container-icons" style="color: #f44336;" nz-tooltip nzTooltipTitle="Delete"
+                    nzTooltipPlacement="bottom" nz-icon nzType="delete" nzTheme="outline"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column">
+          <button nzShape="round" class="slider-action-button" nz-button nzType="default"
+            (click)="sliderActionBtnClick('close')">
+            Close
+          </button>
+        </div>
+        <div fxLayout="column">
+          <button nzShape="round" class="slider-action-button" [disabled]="enablerun===false" nz-button nzType="primary"
+            (click)="sliderActionBtnClick('save')">
+            <i nz-icon nzType="play-circle"></i> Run Mapping
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-drawer>

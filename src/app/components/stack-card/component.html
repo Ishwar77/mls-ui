@@ -1,0 +1,16 @@
+<nz-card nzHoverable class="card-div" (click)="dataEmits(_model)" *ngIf="_model"
+  [style.background-color]="_model['iconBgColor']">
+  <div class="main-heading-div">
+    <div class="sub-heading">
+      <div class="heading">
+        {{ _model ? _model['name'] : '' }}
+      </div>
+      <div class="numbers">
+        {{ _model ? _model['value'] : '' }}
+      </div>
+    </div>
+    <div class="icon-main-div" [style.background-color]="_model['iconColor']">
+      <img width="auto" height="35px" [src]="_model['img']" alt="">
+    </div>
+  </div>
+</nz-card>

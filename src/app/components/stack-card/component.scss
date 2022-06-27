@@ -1,0 +1,33 @@
+.card-div {
+  background-color: #f5f5f5;
+  width: auto;
+  height: auto;
+  border-radius: 7px;
+  cursor: pointer;
+  .main-heading-div {
+    display: flex;
+    flex-direction: row;
+    place-content: space-between;
+    align-items: center;
+  }
+  .heading {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .numbers {
+    font-size: x-large;
+    font-weight: 800;
+    // color: #2d3f4c;
+    color: #fff;
+  }
+  .icon-main-div {
+    background-color: #fff;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    padding: 13px;
+    border-radius: 50px;
+  }
+}

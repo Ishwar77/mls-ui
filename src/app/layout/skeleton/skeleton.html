@@ -1,0 +1,97 @@
+<div class="layout-skeleton-container">
+    <!-- <nz-layout class="layout-container"> -->
+        <!-- <nz-sider nzWidth="250px" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" nzTheme="light" class="bgColor">
+            <div nz-row class="logo bgColor">
+                <div nz-col style="margin-right: 5px;">
+                    <img height="100%" width="80px"
+                        src="../../../assets/images/white-logo.png" alt="Maiora">
+                </div>
+                <div nz-col style="font-size: larger;font-weight: 600;color: #ffffff !important;letter-spacing: 0.8px;">
+                    <span>Life Sciences</span>
+                </div>
+            </div>
+        
+            <div class="app-sidebar-container">
+                <ul class="menu-items bgColor" nz-menu nzTheme="light" nzMode="inline" style="width: 252px;">
+                    <li class="active-tab" routerLinkActive="active-link" nz-menu-item routerLink="auth">
+                        <i nz-icon nzType="dashboard" class="dashboardIcon"></i>
+                        <span class="dashboardSpan">Dashboard</span>
+                    </li>
+                    <li class="list_items" nz-submenu nzTitle="Client" nzIcon="team" routerLink="client" nzOpen>
+                      
+                    </li>
+                    <li class="list_items" *ngIf="pageTitle !== 'Client'" nz-submenu nzTitle="ALS" nzIcon="book" [routerLink]="link"
+                        nzOpen> </li>
+                </ul>
+            </div>
+        </nz-sider> -->
+        <nz-layout style="background-color: #e2e2e2;">
+            <nz-header class="bgColor" style="padding-top: 10px;">
+                <div nz-row class="main-header">
+                    <div nz-col>
+                        <div nz-row style="align-items: center;">
+                            <!-- <div nz-col>
+                                <i class="trigger dashboardIcon" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+                                    (click)="isCollapsed = !isCollapsed"></i>
+                            </div> -->
+                            <!-- src="../../../assets/images/white-logo.png" alt="Maiora"> -->
+                            <div nz-col style="margin-right: 5px;" (click)="goToDashboard()">
+                                <img height="100%" width="80px"
+                                    src="https://maioras3.s3.ap-south-1.amazonaws.com/website/logo/Maiora-logo.png" alt="Maiora">
+                            </div>
+                            <div nz-col
+                             style="font-size: larger;
+                                font-weight: 600;
+                                color: #ff5722 !important;
+                                letter-spacing: 0.8px;
+                                ">
+                                <span>Life Sciences</span>
+                                <span style="color: #002147; margin: 0px 0px 0px 10px; font-size: 20px;">
+                                    <i nz-icon nzType="caret-right" nzTheme="outline"></i>
+                                </span>
+                            </div>
+                            <div nz-col>
+                                <nz-breadcrumb>
+                                    <nz-breadcrumb-item style="letter-spacing:0.8px; font-weight: 500; color: #002147;">
+                                        {{pageTitle}} </nz-breadcrumb-item>
+                                </nz-breadcrumb>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div nz-col class="toolabar-end">
+                        <div nz-row>
+                            <div nz-col style="margin-right: 30px;">
+                                <button nz-tooltip nzTooltipTitle="Dashboard" nzTooltipPlacement="bottom" nz-button nzType="default"
+                                    nzSize="large" style="border-radius: 8px;">
+                                    <i nz-icon nzType="dashboard" nzTheme="outline"></i>
+                                    Dashboard
+                                </button>
+                            </div>
+                            <div nz-col style="margin-right: 30px; width: 500px;">
+                                <nz-input-group [nzSuffix]="suffixIconSearch" nzSize="large" style="border-radius: 6px;">
+                                    <input type="text" nz-input placeholder="Search" />
+                                  </nz-input-group>
+                                  <ng-template #suffixIconSearch>
+                                    <i nz-icon nzType="search"></i>
+                                  </ng-template>
+                            </div>
+                            <div nz-col>
+                                <nz-badge class="toolbar-space" [nzCount]="5">
+                                    <i nz-icon class="icon-custom dashboardIcon" nzType="bell"></i>
+                                </nz-badge>
+                                <i nz-icon class="toolbar-space icon-custom dashboardIcon" nzType="user" nzTheme="outline"></i>
+                                <i nz-icon class="icon-custom dashboardIcon" nzType="logout" (click)="logout()" nzTheme="outline"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nz-header>
+            <nz-content>
+                <div class="inner-content custom-scrollbar">
+                    <router-outlet></router-outlet>
+                </div>
+            </nz-content>
+        </nz-layout>
+    <!-- </nz-layout> -->
+</div>

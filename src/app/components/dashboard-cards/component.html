@@ -1,0 +1,23 @@
+<nz-card nzHoverable class="card-div" (click)="dataEmits(_model)" *ngIf="_model">
+  <div class="main-heading-div">
+    <div class="first-section-container">
+      <div class="icon-main-div" [style.background-color]="_model['iconBgColor']">
+        <i nz-icon style="color:#fff;font-size: 21px;" [nzType]="_model['iconType']" [style.color]="_model['iconColor']"
+          nzTheme="outline"></i>
+      </div>
+      <div class="sub-heading">
+        <div class="numbers">
+          {{ _model ? _model['value'] : '' }}
+        </div>
+        <div class="heading">
+          {{ _model ? _model['name'] : '' }}
+        </div>
+      </div>
+    </div>
+    <div class="second-section-container">
+      <div class="percentage-value-content">
+        <span>{{_model['calculation']}}</span> <img width="auto" height="30px" src="assets/images/arow.png" alt="">
+      </div>
+    </div>
+  </div>
+</nz-card>

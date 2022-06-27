@@ -1,0 +1,113 @@
+p {
+  margin: 0;
+}
+.main-cards {
+  display: flex;
+  flex-wrap: wrap;
+  > .main-cards-cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+.ant-card {
+  border-radius: 15px !important;
+}
+.plus-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0px 30px 0px 0px;
+}
+.action-buttons {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ds-slider-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  > .ds-slider-form {
+    height: 86vh;
+    overflow: hidden;
+    overflow-y: auto;
+    width: 103.2%;
+    padding-right: 20px;
+
+    .formInput-container {
+      margin: 10px 0;
+    }
+
+    > .formInput-container-config {
+      > .formInput-container-config-inputs {
+        > input {
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+  > .ds-slider-actions {
+    border-top: solid silver 1px;
+    height: 50px;
+    padding-top: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    > .action-one {
+    }
+    > .action-one {
+    }
+  }
+}
+.ant-drawer-body {
+  background: #ffff !important;
+}
+.footer {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ant-card-actions {
+  border-radius: 15px;
+}
+
+.card-container {
+  width: 320px;
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  height: 200px;
+  .card-body-container {
+    height: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  &:hover {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    cursor: pointer;
+  }
+}
+
+.floating-action {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+}
+.footer-icons-1 {
+  font-size: 18px;
+  &:hover {
+    color: #5604e8;
+  }
+}
+.footer-icons-2 {
+  font-size: 19px;
+  &:hover {
+    color: #600b6f;
+  }
+}

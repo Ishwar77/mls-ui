@@ -1,0 +1,91 @@
+/**
+ * Custom styles for theming the app, MS Outlook based styling
+ * @see https://sass-lang.com/documentation/variables
+ */
+
+$primary-color: #fff;
+
+$secondary-color: #ff610305;
+
+$tertiary-color: linear-gradient(118deg, #7367f0, rgba(115, 103, 240, 0.7));
+
+$nav-section-color: #fff;
+
+$font-color: #6e6b7b !important;
+
+$bg-light-one: #faf9f8;
+
+$bg-light-two: #f3f2f1;
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected,
+.active-link {
+  background: $tertiary-color;
+  box-shadow: 0 0 6px 1px rgb(115 103 240 / 70%);
+  border-radius: 2px;
+  color: #ffff !important;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  > span {
+    color: #fff !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  &:hover {
+    background: $tertiary-color;
+    box-shadow: 0 0 6px 1px rgb(115 103 240 / 70%);
+    color: #ffff !important;
+  }
+}
+
+.ant-menu-inline .ant-menu-item:after,
+.ant-menu-vertical-left .ant-menu-item:after,
+.ant-menu-vertical-right .ant-menu-item:after,
+.ant-menu-vertical .ant-menu-item:after {
+  border-right: 0 !important;
+}
+
+.ant-tabs-top > .ant-tabs-nav::before,
+.ant-tabs-top > div > .ant-tabs-nav::before {
+  border-bottom: 0 !important;
+}
+
+.form-container-actions {
+  margin-top: 10px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: #fff !important;
+  border-radius: 5px !important;
+  padding: 10px !important;
+}
+.form-container-grid {
+  border: 0px !important;
+  padding: 15px 15px 5px 10px !important;
+  height: 70vh !important;
+  overflow: hidden !important;
+  overflow-y: auto !important;
+  border-radius: 5px !important;
+  background: #fff !important;
+}
+::-webkit-scrollbar {
+  width: 0.1px;
+}
+
+::-webkit-scrollbar-track {
+  --webkit-box-shadow: inset 0 0 0px #f4f4f4;
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1px;
+  --webkit-box-shadow: inset 0 0 0px #e2e2e2;
+}
+
+.phase-active {
+  color: #fff !important;
+  border-color: none !important;
+  background: #3cc53c !important;
+  background-color: #3cc53c !important;
+  border: none !important;
+}

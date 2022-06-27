@@ -1,0 +1,8 @@
+.app-root-component-body {
+    background-color: #F0F2F5;
+    border-radius: 5px;
+    > .app-root-component-body-contents {
+        height: 100%;
+        overflow: auto;
+    }
+}

@@ -1,0 +1,55 @@
+.planner-dashboard-container {
+  margin: auto;
+  padding-top: 10px;
+  padding-left: 0px !important;
+  .gutter-row {
+    padding-left: 9px !important;
+    padding-right: 9px !important;
+    margin-bottom: 20px;
+  }
+}
+
+.graph-one-heading {
+  align-items: center;
+  place-content: space-between;
+  border-bottom: 2px solid #e4e4e4;
+  padding: 10px 10px 0px 17px;
+  display: flex;
+  flex-direction: row;
+  > .graph-header {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1.1px;
+    color: #043379;
+  }
+}
+
+.section-two-div {
+  background-color: white;
+  width: 30%;
+  border-radius: 5px;
+  height: 401px;
+  // overflow: auto;
+}
+
+.section-one-div {
+  background-color: white;
+  width: 70%;
+  border-radius: 5px;
+  height: 401px;
+}
+
+.section-four-div {
+  background-color: white;
+  width: 100%;
+  border-radius: 5px;
+  // height: 401px;
+  height: auto;
+}
+.division {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}

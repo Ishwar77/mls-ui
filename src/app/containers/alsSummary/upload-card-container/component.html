@@ -1,0 +1,39 @@
+<div class="sdtm-upload-card-container" *ngIf="_dataItems">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="10px">
+                <div fxLayout="column">
+                    <i style="font-size: 3rem;opacity: 0.7;" nz-icon nzType="file-done" nzTheme="outline"></i>
+                </div>
+                <div fxLayout="column">
+                    <div fxLayout="column" class="sdtm-upload-card-container-header">
+                        {{_dataItems ? _dataItems['oid'] : ''}}
+                    </div>
+                    <!-- <div style="font-weight: 400;" fxLayout="column" class="sdtm-upload-card-container-header">
+                        {{_dataItems ? _dataItems['key'] : ''}}
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="20px">
+                <div fxLayout="column">
+                    <nz-upload nzAction=_uploadurl >
+                        <i class="sdtm-card-container-icons" nz-icon nz-tooltip nzTooltipTitle="Upload"
+                            nzTooltipPlacement="bottom" nzType="upload" nzTheme="outline" (click)="upload($event)"></i>
+                    </nz-upload>
+                    <!-- <i class="sdtm-card-container-icons" nz-icon nz-tooltip nzTooltipTitle="Upload"
+                        nzTooltipPlacement="bottom" nzType="upload" nzTheme="outline" (click)="upload(data)"></i> -->
+                </div>
+                <div fxLayout="column">
+                    <i class="sdtm-card-container-icons" nz-tooltip nzTooltipTitle="Download"
+                        nzTooltipPlacement="bottom" nz-icon nzType="download" nzTheme="outline"></i>
+                </div>
+                <div fxLayout="column">
+                    <i class="sdtm-card-container-icons" style="color: #f44336;" nz-tooltip nzTooltipTitle="Delete"
+                        nzTooltipPlacement="bottom" nz-icon nzType="delete" nzTheme="outline"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

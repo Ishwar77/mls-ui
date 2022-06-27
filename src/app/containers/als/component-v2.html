@@ -1,0 +1,219 @@
+<div class="breadcrumDiv">
+    <button style="border-radius: 50px; margin-right: 10px;" nz-button nzType="primary">
+        <i nz-icon nzType="arrow-left" (click)="goback()" nz-tooltip nzTooltipTitle="Back to Client"
+            nzTooltipPlacement="right" style="cursor: pointer;"></i>
+    </button>
+    <button class="breadcrum" (click)="goback()">client/{{clientname}}</button>
+    <i class="breadcrum" nz-icon nzType="right" nzTheme="outline" style="margin-top: 9px;"></i>
+    <button class="breadcrum">Als</button>
+    <!-- <nz-breadcrumb>
+        <nz-breadcrumb-item style="letter-spacing:0.8px; font-weight: 500; color: black;">
+            {{breadCrumb}} </nz-breadcrumb-item>
+    </nz-breadcrumb> -->
+  </div>
+
+<div fxLayout="column" fxFlexFill fxLayoutGap="10px">
+    <!-- <div fxLayout="column">
+        <button style="border-radius: 50px;" nz-button nzType="primary">
+            <i nz-icon nzType="arrow-left" (click)="goback()" nz-tooltip nzTooltipTitle="Back to Client"
+                nzTooltipPlacement="right" style="cursor: pointer;"></i>
+        </button>
+    </div> -->
+    <div *ngIf="!(data && data.length)" style="height: calc(100vh - 205px);">
+        <app-loading-component></app-loading-component>
+    </div>
+    <div *ngIf="noDataActionStatus == 1" style="height: calc(100vh - 205px);">
+        <app-no-content></app-no-content>
+    </div>
+
+    <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="20px" class="main-cards">
+            <div fxLayout="column" class="card-container cardBoxShadow" *ngFor="let item of data">
+                <!-- <div *ngIf="!(data && data.length)" style="height: calc(100vh - 205px);">
+                    <app-no-content></app-no-content>
+                </div> -->
+                <div fxLayout="column" style="padding:15px; border-bottom: 1px solid #f4f4f4;">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" nz-tooltip nzTooltipTitle="Title">
+                            {{ (item ? item['title'] : '') || N/A}}
+                        </div>
+                        <div fxLayout="column">
+                            <a (click)="open(1,item)">
+                                <i nz-icon nzType="edit" nz-tooltip nzTooltipTitle="Edit" nzTooltipColor="#1890ff"
+                                    nzTheme="outline"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="column" style="padding:15px;border-bottom: 1px solid #f4f4f4;height: 110px;">
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <div class="cardDescP" fxLayout="column" nz-tooltip nzTooltipTitle="Description">
+                            {{(item ? item['description'] : '') || N/A}}
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="column" style="padding:15px;">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" nz-tooltip nzTooltipTitle="Status">
+                            {{(item ? item['studyStatus'] : '') || N/A }}
+                        </div>
+                        <div fxLayout="column">
+                            <div fxLayout="row" fxLayoutGap="20px">
+                                <div fxLayout="column">
+                                    <i nz-tooltip nzTooltipTitle="SDTM View" nzTooltipColor="#C833FF"
+                                        class="footer-icons-1" (click)="sdtmView(item)" nz-icon nzType="pic-right"
+                                        nzTheme="outline"></i>
+                                </div>
+                                <div fxLayout="column">
+                                    <i nz-tooltip nzTooltipTitle="Summary View" nzTooltipColor="#339EFF"
+                                        class="footer-icons-2" (click)="gotofolder(item)" nz-icon nzType="fund-view"
+                                        nzTheme="outline"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="column" class="floating-action">
+        <button nz-tooltip nzTooltipTitle="Create ALS" nz-button nzType="primary" nzSize="large" nzShape="circle"
+            (click)="open(2,data)">
+            <i nz-icon nzType="plus"></i>
+        </button>
+    </div>
+</div>
+
+<nz-drawer [nzClosable]="false" [nzVisible]="_isVisible" nzPlacement="right" [nzWidth]="850" [nzTitle]="sliderTitle"
+    (nzOnClose)="close()">
+    <form *nzDrawerContent nz-form>
+        <div class="ds-slider-container">
+            <div class="ds-slider-form">
+                <nz-tabset nzSize="large">
+                    <nz-tab nzTitle="Basic">
+                        <div class="formInput-container">
+                            Title <input type="text" [disabled]="formAction === 1" required placeholder="Title"
+                                name="Title" nz-input [(ngModel)]="sliderModel['title']" />
+                        </div>
+
+                        <div class="formInput-container">
+                            Description <textarea [disabled]="formAction === 1" required placeholder="Description"
+                                name="Description" nz-input [(ngModel)]="sliderModel['description']"></textarea>
+                        </div>
+
+
+                        <div *ngIf="editalsupload === false" style="margin: 10px 0px 10px 0px;">
+                            <nz-upload nzAction="https://life-sciences-maiora.herokuapp.com/api/upload/file/als"
+                                nzType="drag" [nzMultiple]="false" (nzChange)="handleChangeals($event)">
+                                <div style="height: 92px">
+                                    <p class="ant-upload-drag-icon">
+                                        <i nz-icon nzType="cloud-upload" nzTheme="outline"></i>
+                                    </p>
+                                    <p class="ant-upload-text">ALS File</p>
+                                </div>
+                            </nz-upload>
+                        </div>
+                        <div *ngIf="editalsupload === true" style="margin: 10px 0px 10px 0px;">
+                            <nz-upload [nzDisabled]="disableuplaod"
+                                nzAction="https://life-sciences-maiora.herokuapp.com/api/upload/file/reupload"
+                                nzType="drag" [nzMultiple]="false" (nzChange)="handleChangealsEdit($event)">
+                                <div style="height: 92px">
+                                    <p class="ant-upload-drag-icon">
+                                        <i nz-icon nzType="cloud-upload" nzTheme="outline"></i>
+                                    </p>
+                                    <p class="ant-upload-text">ALS File</p>
+                                </div>
+                            </nz-upload>
+                        </div>
+                        <div>
+                            <nz-upload nzAction="https://maiora-life-sciences.herokuapp.com/api/upload/file/sample"
+                                nzType="drag" [nzMultiple]="true" (nzChange)="handleChangesample($event)">
+                                <div style="height: 92px">
+                                    <p class="ant-upload-drag-icon">
+                                        <i nz-icon nzType="cloud-upload" nzTheme="outline"></i>
+                                    </p>
+                                    <p class="ant-upload-text">Sample Data Files</p>
+                                </div>
+                            </nz-upload>
+                        </div>
+                    </nz-tab>
+                    <nz-tab nzTitle="Advanced" [nzDisabled]="advancedtab === false">
+                        <div *ngIf="editalsupload === true" style="margin: 10px 0px;">
+                            <!-- <nz-select nzMode = 'tags' nzPlaceHolder="Select Version">
+                        <nz-option *ngFor="let version of versionlist | removeDups" [nzLabel]="version.version" [nzValue]="version.version"></nz-option>
+                      </nz-select> -->
+                            <!-- <button nz-button nz-dropdown [nzDropdownMenu]="menu4">
+                                Versions
+                                <i nz-icon nzType="down"></i>
+                            </button>
+                            <nz-dropdown-menu #menu4="nzDropdownMenu">
+                                <ul nz-menu>
+                                    <li nz-menu-item *ngFor="let version of versionlist"
+                                        (click)="getdatabyversion(version)">{{version}}</li>
+                                </ul>
+                            </nz-dropdown-menu> -->
+                            <nz-select nzPlaceHolder="Latest Version" [ngModel]="versionlist"
+                                (ngModelChange)="getdatabyversion($event)">
+                                <nz-option *ngFor="let jc of versionlist" [nzLabel]="jc" [nzValue]="jc"></nz-option>
+                            </nz-select>
+                        </div>
+                        <div *ngIf="!(resourceListValue && resourceListValue.length)">
+                            <app-loading-component></app-loading-component>
+                        </div>
+                        <div nz-row>
+                            <div nz-col>
+                                <div>
+                                    <nz-tabset [(nzSelectedIndex)]="index" nzType="editable-card" nzHideAdd>
+                                        <nz-tab *ngFor="let tab of tabs; let i = index" [nzTitle]="tab"
+                                            (nzClick)="filteronsheets(tab)">
+                                            <div class="form-grid-container" *ngIf="resourceListValue.length">
+                                                <app-grid-component [pageSize]="10" [dataItems]="resourceListValue"
+                                                    [allowRowInfo]="false" (onSelect)="gridAction(tab,$event)">
+                                                </app-grid-component>
+                                            </div>
+                                        </nz-tab>
+                                    </nz-tabset>
+                                </div>
+                            </div>
+                        </div>
+                    </nz-tab>
+                </nz-tabset>
+            </div>
+
+            <div class="ds-slider-actions">
+                <div class="ds-slider-action action-one">
+                    <button class="slider-action-button" nz-button nzType="default"
+                        (click)="sliderActionBtnClick('close')">
+                        Close
+                    </button>
+                </div>
+                <div class="ds-slider-action action-three">
+
+                    <button class="slider-action-button" *ngIf="formAction === 1" nz-button nzType="primary"
+                        (click)="sliderActionBtnClick('edit')">
+                        <i nz-icon nzType="edit"></i> Edit
+                    </button>
+                    <button class="slider-action-button" *ngIf="formAction === 3" nz-button nzType="primary"
+                        (click)="sliderActionBtnClick('update')">
+                        <i nz-icon nzType="check"></i> UPDATE
+                    </button>
+                    <button style="margin:0px 10px 0px 10px;" class="slider-action-button" *ngIf="advancedtab === true "
+                        nz-button nzType="primary" (click)="sliderActionBtnClick('sync')">
+                        <i nz-icon nzType="sync" nzTheme="outline"></i> SYNC
+                    </button>
+                    <button class="slider-action-button" *ngIf="advancedtab === true " nz-button nzType="primary"
+                        (click)="sliderActionBtnClick('save')">
+                        <i nz-icon nzType="save"></i> SAVE
+                    </button>
+                    <button class="slider-action-button" *ngIf="formAction === 2 && advancedtab === false" nz-button
+                        nzType="primary" (click)="sliderActionBtnClick('next')">
+                        <i nz-icon nzType="plus-square" nzTheme="outline"></i> Create ALS
+                    </button>
+
+
+
+                </div>
+            </div>
+        </div>
+    </form>
+</nz-drawer>

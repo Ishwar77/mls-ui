@@ -1,0 +1,190 @@
+<div class="als-list-container" fxFlexFill>
+  <div class="als-list-main-row" fxLayout="column" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="15px">
+          <div fxLayout="column" style="margin: 3px 15px 0px 0px;">
+            <button style="border-radius: 50px;" nz-button nzType="primary">
+              <i nz-icon nzType="arrow-left" (click)="goback()" nz-tooltip nzTooltipTitle="Back to Form" nzTooltipPlacement="right" style="cursor: pointer;"></i> </button>
+          </div>
+          <div fxLayout="column">
+            <button nz-tooltip
+              [nzTooltipTitle]="_UIHandleData && _UIHandleData['selectedTab'] && _UIHandleData['selectedTab']['name']"
+              nzTooltipPlacement="bottom" nz-button nzType="default" nzSize="large" nzShape="round">
+              <i nz-icon [nzType]="_UIHandleData['selectedTab'] && _UIHandleData['selectedTab']['icon']"
+                nzTheme="outline"></i>
+              <span style="color: #f44336;letter-spacing: 0.5px;font-weight: 700;">{{(_UIHandleData ?
+                _UIHandleData['selectedTabDataCount'] : 'N/A') || 'N/A'}}</span>
+            </button>
+          </div>
+          <div fxLayout="column">
+            <button nz-tooltip nzTooltipTitle="Export" nzTooltipPlacement="bottom" nz-button nzType="default"
+              nzSize="large" nzShape="round" (click)="export()">
+              <i nz-icon nzType="export" nzTheme="outline"></i>
+              Export
+            </button>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="15px">
+          <div fxLayout="column">
+            <button (click)="audit()" nz-tooltip nzTooltipTitle="Audit" nzTooltipPlacement="bottom" nz-button
+              nzType="default" nzSize="large" nzShape="round">
+              <i nz-icon nzType="audit" nzTheme="outline"></i>
+              Audit
+            </button>
+          </div>
+          <div fxLayout="column">
+            <button (click)="history()" nz-tooltip nzTooltipTitle=" History" nzTooltipPlacement="bottom" nz-button
+              nzType="default" nzSize="large" nzShape="round">
+              <i nz-icon nzType="history" nzTheme="outline"></i>
+              History
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" class="als-tab-container">
+      <nz-tabset nzType="card" nzSize="large" (nzSelectChange)="tabselectionChange($event)">
+        <nz-tab [nzTitle]="titleTemplate" *ngFor="let item of _UIHandleData['tabList']" (nzSelect)="selectedTab(item)">
+          <ng-template #titleTemplate>
+            <i nz-icon [nzType]="item['icon']"></i>
+            {{ item['name'] }}
+          </ng-template>
+          <div fxLayout="column" *ngIf="item['key'] === 'field'">
+            <div *ngIf="!(_UIHandleData && _UIHandleData['fieldList'].length)" style="height: calc(100vh - 205px);">
+              <app-loading-component></app-loading-component>
+            </div>
+            <nz-table *ngIf="(_UIHandleData && _UIHandleData['fieldList'].length) && (!_UIHandleData ['fieldTestCase'])"
+               class="trans-table-custom-styles"  nzBordered [nzPageSize]="12" [nzScroll]="{ y: 'calc(100vh - 280px)' }"
+               [nzShowPagination]="true" #nzTable [nzData]="_UIHandleData['fieldList']" nzTableLayout=" fixed"
+               nzAlign="center">
+              <thead>
+                <tr>
+                  <th class="trans-table-custom-thead">Field OID</th>
+                  <th class="trans-table-custom-thead">Draft FieldName</th>
+                  <th class="trans-table-custom-thead">Form OID</th>
+                  <th class="trans-table-custom-thead">Coding Dictionary</th>
+                  <th class="trans-table-custom-thead">Data Format</th>
+                  <th class="trans-table-custom-thead">Default Value</th>
+                  <th class="trans-table-custom-thead">Break Signature</th>
+                  <th class="trans-table-custom-thead">View Test Cases</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-template ngFor let-data [ngForOf]="nzTable.data">
+                  <tr>
+                    <td class="trans-table-custom-tbody-td">{{data['fieldOID']}}</td>
+                    <td class="trans-table-custom-tbody-td">{{data['draftFieldName']}}</td>
+                    <td class="trans-table-custom-tbody-td">{{data ? data.formOID: ''}}</td>
+                    <td class="trans-table-custom-tbody-td"> {{data ? data.codingDictionary : ''}} </td>
+                    <td class="trans-table-custom-tbody-td">{{data.dataFormat}}</td>
+                    <td class="trans-table-custom-tbody-td">{{data.defaultValue}}</td>
+                    <td class="trans-table-custom-tbody-td">{{data.doesNotBreakSignature}}</td>
+                    <td class="trans-table-custom-tbody-td" (click)="viewTestCases(data)" style="cursor: pointer;text-align: center;"><i nz-icon nzType="info-circle" nzTheme="outline"></i></td>
+                  </tr>
+                </ng-template>
+              </tbody>
+            </nz-table>  
+            <div fxLayout="column" fxLayoutGap="20px" *ngIf="_UIHandleData ['fieldTestCase']">
+              <div fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap="20px">
+                      <div fxLayout="column" (click)="backToMainField()">
+                        <button style="border-radius: 50px;" nz-button nzType="primary">
+                          <i nz-icon nzType="arrow-left" style="cursor: pointer;"></i> </button>
+                      </div>
+                      <!-- <div fxLayout="column">
+                        <i nz-icon nzType="snippets" style="font-size: 16px; color: #08c;" nzTheme="outline"></i>
+                      </div> -->
+                      <div fxLayout="column">
+                        <span style="font-size: 20px;
+                        font-weight: 400;">Test Cases</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap="20px">
+                      <div fxLayout="column">
+                        <button nz-tooltip nzTooltipTitle="Export" nzTooltipPlacement="bottom" nz-button
+                          nzType="default" nzSize="large" nzShape="round" (click)="exporttestcases()">
+                          <i nz-icon nzType="export" nzTheme="outline"></i>
+                          Export Testcase
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="column">
+                <app-mls-field-testcases-container [dataItems]="_UIHandleData['fieldNestedTestcases']">
+                </app-mls-field-testcases-container>
+                <!-- <nz-table class="trans-table-custom-styles"  nzBordered [nzPageSize]="12"
+                  [nzScroll]="{ y: 'calc(100vh - 280px)' }"  [nzShowPagination]="true" #nzTable
+                  [nzData]="_UIHandleData['fieldNestedTestcases']"  nzTableLayout="fixed"  nzAlign="center">
+                  <thead>
+                    <tr>
+                      <th class="trans-table-custom-thead">Form OID</th>
+                      <th class="trans-table-custom-thead">Field OID</th>
+                      <th class="trans-table-custom-thead">ECRF Version</th>
+                      <th class="trans-table-custom-thead">Subject Id</th>
+                      <th class="trans-table-custom-thead">Test Condition</th>
+                      <th class="trans-table-custom-thead">Test Status</th>
+                      <th class="trans-table-custom-thead">Created By</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-template ngFor let-data [ngForOf]="nzTable.data">
+                      <tr>
+                        <td class="trans-table-custom-tbody-td">{{data['form_OID']}}</td>
+                        <td class="trans-table-custom-tbody-td">{{data['field_OID']}}</td>
+                        <td class="trans-table-custom-tbody-td">{{data ? data.ecrf_verion: ''}}</td>
+                        <td class="trans-table-custom-tbody-td">{{data ? data.subject_id: ''}}</td>
+                        <td class="trans-table-custom-tbody-td">{{data.test_condition}}</td>
+                        <td class="trans-table-custom-tbody-td">{{data.test_status}}</td>
+                        <td class="trans-table-custom-tbody-td">{{data.created_by}}</td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </nz-table> -->
+              </div>
+            </div>
+          </div>
+          <div fxLayout="column" *ngIf="item['key'] === 'datadictionary'">
+            <div *ngIf="!(_UIHandleData && _UIHandleData['datadictionaryList'].length)"
+              style="height: calc(100vh - 205px);">
+              <app-loading-component></app-loading-component>
+            </div>
+            <div *ngIf="_UIHandleData && _UIHandleData['datadictionaryList'].length">
+              <app-grid-component [pageSize]="12" [dataItems]="_UIHandleData['datadictionaryList']"
+                (onEdit)="gridAction($event)" (onSelect)="gridAction($event)" [ignoredCol]="ignoredColdictionary">
+              </app-grid-component>
+            </div>
+          </div>
+          <div fxLayout="column" *ngIf="item['key'] === 'matrix'">
+            <div *ngIf="!(_UIHandleData && _UIHandleData['matrixList'].length)" style="height: calc(100vh - 205px);">
+              <app-no-content></app-no-content>
+            </div>
+            <div *ngIf="_UIHandleData && _UIHandleData['matrixList'].length">
+              <app-grid-component [pageSize]="12" [dataItems]="_UIHandleData['matrixList']"
+                (onEdit)="gridAction($event)" (onSelect)="gridAction($event)" [ignoredCol]="ignoredColmatrix">
+              </app-grid-component>
+            </div>
+          </div>
+          <div fxLayout="column" *ngIf="item['key'] === 'visits'">
+            <div *ngIf="!(_UIHandleData && _UIHandleData['visitsList'].length)" style="height: calc(100vh - 205px);">
+              <app-no-content></app-no-content>
+            </div>
+            <div *ngIf="_UIHandleData && _UIHandleData['visitsList'].length">
+              <app-grid-component [pageSize]="12" [dataItems]="_UIHandleData['visitsList']"
+                (onEdit)="gridAction($event)" (onSelect)="gridAction($event)" [ignoredCol]="ignoredColvisits">
+              </app-grid-component>
+            </div>
+          </div>
+        </nz-tab>
+      </nz-tabset>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<div *ngIf="!(data && data.length)" style="height: calc(100vh - 205px);">
+  <app-loading-component></app-loading-component>
+</div>
+<div>
+
+<div class="breadcrumDiv" *ngIf="(data && data.length)">
+  <button class="breadcrum" routerLink="/client">Client</button>
+</div>
+
+  <div class="main-cards">
+    <div class="main-cards-cards"> 
+      <div style="padding:10px 17px;" #rowSelectionTable *ngFor="let item of data" class="cardDiv">
+        <nz-card class="cardBoxShadow" style="width:300px; cursor: pointer;" nz-tooltip nzTooltipTitle="Client" [nzBordered]="false"
+          [nzTitle]="item.name" [nzActions]="[footer]" [nzExtra]="extraTemplate">
+          <p class="cardDescP" nz-tooltip nzTooltipTitle="Description">{{item.description}}</p>
+        </nz-card>
+        <ng-template #extraTemplate>
+          <a (click)="open(1,item)"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+        </ng-template>
+        <ng-template #footer>
+          <div class="footer">
+            <p nz-tooltip nzTooltipTitle="Created Date" style="padding-left: 10px;">{{item.created | date:'short'}}</p>
+            <a nz-tooltip nzTooltipTitle="ALS view" style="width: 61px;color:#1890ff" (click)="gotoals(item)"><i nz-icon
+                nzType="book" nzTheme="outline"></i></a>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <!--add this [nzExtra]="extraTemplate"-->
+
+
+  </div>
+  <div class="floating-action">
+    <button nz-tooltip nzTooltipTitle="Create Client" nz-button nzType="primary" nzSize="large" nzShape="circle"
+      (click)="open(2,data)" style="background-color: #4987c1;">
+      <i nz-icon nzType="plus"></i>
+    </button>
+  </div>
+</div>
+
+<nz-drawer [nzClosable]="false" [nzVisible]="_isVisible" nzPlacement="right" [nzWidth]="470" [nzTitle]="sliderTitle"
+  (nzOnClose)="close()">
+  <form *nzDrawerContent nz-form>
+    <div class="ds-slider-container">
+      <div class="ds-slider-form">
+
+        <div class="formInput-container">
+          Title
+          <input type="text" [disabled]="formAction === 1" required placeholder="Title" name="Title" nz-input
+            [(ngModel)]="sliderModel['name']" />
+        </div>
+
+        <div class="formInput-container">
+          Description <textarea [disabled]="formAction === 1" required placeholder="Description" name="Description"
+            nz-input [(ngModel)]="sliderModel['description']"></textarea>
+        </div>
+
+      </div>
+
+      <div class="ds-slider-actions">
+        <div class="ds-slider-action action-one">
+          <button class="slider-action-button" nz-button nzType="default" (click)="sliderActionBtnClick('close')">
+            Close
+          </button>
+        </div>
+        <div class="ds-slider-action action-three">
+
+          <button class="slider-action-button" *ngIf="formAction === 1" nz-button nzType="primary"
+            (click)="sliderActionBtnClick('edit')">
+            <i nz-icon nzType="edit"></i> Edit
+          </button>
+
+          <button class="slider-action-button" *ngIf="formAction === 2 " nz-button nzType="primary"
+            (click)="sliderActionBtnClick('save')">
+            <i nz-icon nzType="save"></i> SAVE
+          </button>
+
+          <button class="slider-action-button" *ngIf="formAction === 3" nz-button nzType="primary"
+            (click)="sliderActionBtnClick('update')">
+            <i nz-icon nzType="check"></i> UPDATE
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </form>
+
+</nz-drawer>
+
+
+<!-- <div>
+
+<button nz-tooltip nzTooltipTitle="Export" nzTooltipPlacement="bottom" nz-button nzType="default"
+  nzSize="large" nzShape="round" (click)="export()">
+  <i nz-icon nzType="export" nzTheme="outline"></i>
+  Export
+</button>
+
+  <nz-table #basicTable [nzData]="listOfData" id="basicTable">
+    <thead>
+      <tr>
+        <th>STUDYID</th>
+        <th>SITEID</th>
+        <th>SUBJECT_ID</th>
+        <th>DRAFT_NAME</th>
+        <th>Created_By</th>
+        <th>FormOID</th>
+        <th>FieldOID</th>
+        <th>VariableOID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.STUDYID }}</td>
+        <td>{{ data.SITEID }}</td>
+        <td>{{ data.SUBJECT_ID }}</td>
+        <td>{{ data.DRAFT_NAME }}</td>
+        <td>{{ data.Created_By }}</td>
+        <td>{{ data.FormOID }}</td>
+        <td>{{ data.FieldOID }}</td>
+        <td>{{ data.VariableOID }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+</div> -->

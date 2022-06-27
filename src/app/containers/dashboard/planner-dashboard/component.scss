@@ -1,0 +1,20 @@
+.planner-dashboard-container {
+    margin: auto;
+    padding-top: 10px;
+    padding-left: 0px !important;
+    .gutter-row {
+        padding-left: 9px !important;
+        padding-right: 9px !important;
+        margin-bottom: 20px;
+    }
+}
+
+.activityDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e2e2e2;
+    padding: 4px 10px 4px 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+}

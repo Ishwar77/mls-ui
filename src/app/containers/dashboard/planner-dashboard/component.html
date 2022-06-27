@@ -1,0 +1,95 @@
+<div *ngIf="!(clientData && clientData.length)" style="height: calc(100vh - 205px);">
+    <app-loading-component></app-loading-component>
+</div>
+
+<div class="planner-dashboard-container">
+    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+        <div nz-col class="gutter-row" nzFlex="1" *ngFor="let data of _dashboardListData">
+            <app-intelogiz-dashboard-card (cardDataEmits)="cardClicked(data)" [model]="data">
+            </app-intelogiz-dashboard-card>
+        </div>
+    </div>
+</div>
+
+<div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }" style="margin-top: 30px;" *ngIf="(clientData && clientData.length)">
+
+    <div nz-col class="gutter-row" nzFlex="3"><div class="inner-box">
+        <nz-card class="cardBoxShadow"> 
+            <img src="https://docs.microsoft.com/en-us/azure/azure-maps/media/migrate-google-maps-web-app/google-maps-marker.png" alt="" style="width: 380px; height: 384px;">
+            <h1 style="text-align: center;">Realtime Data Capturing</h1>
+        </nz-card>
+    </div></div>
+
+    <div nz-col class="gutter-row" nzFlex="3"><div class="inner-box">
+        <nz-card class="cardBoxShadow">
+            <div style="display: block;">
+                <canvas baseChart width="380" height="380"
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [plugins]="barChartPlugins"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType">
+                </canvas>
+              </div>
+              <h1 style="text-align: center;">Study Elements</h1>
+        </nz-card>
+    </div></div>
+    <div nz-col class="gutter-row" nzFlex="3"><div class="inner-box">
+        <nz-card class="cardBoxShadow">
+            <div style="display: block;">
+                <canvas baseChart width="380" height="380"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  [plugins]="lineChartPlugins">
+                </canvas>
+              </div>
+              <h1 style="text-align: center;">Overall Test Cases Trend</h1>
+        </nz-card>
+    </div></div>
+    <div nz-col class="gutter-row" nzFlex="2"><div class="inner-box">
+        <nz-card class="cardBoxShadow" style="height: 492px;">
+            <div class="activityDiv">
+                <div>
+                    <h3>Study Created</h3>
+                    <p>Creation 12:34 PM</p>
+                </div>
+                <div style="padding-right: 6px; font-size: 20px;">
+                    <i nz-icon nzType="right" nzTheme="outline"></i>
+                </div>
+            </div>
+            <div class="activityDiv">
+                <div>
+                    <h3>Form Created</h3>
+                    <p>Creation 12:34 PM</p>
+                </div>
+                <div style="padding-right: 6px; font-size: 20px;">
+                    <i nz-icon nzType="right" nzTheme="outline"></i>
+                </div>
+            </div>
+            <div class="activityDiv">
+                <div>
+                    <h3>Study Created</h3>
+                    <p>Creation 12:34 PM</p>
+                </div>
+                <div style="padding-right: 6px; font-size: 20px;">
+                    <i nz-icon nzType="right" nzTheme="outline"></i>
+                </div>
+            </div>
+            <div class="activityDiv">
+                <div>
+                    <h3>Study Created</h3>
+                    <p>Creation 12:34 PM</p>
+                </div>
+                <div style="padding-right: 6px; font-size: 20px;">
+                    <i nz-icon nzType="right" nzTheme="outline"></i>
+                </div>
+            </div>
+            <h1 style="text-align: center;">Activities</h1>
+        </nz-card>
+    </div></div>
+  </div>

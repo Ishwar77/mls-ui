@@ -1,0 +1,40 @@
+<div class="planner-dashboard-container">
+    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+        <div nz-col class="gutter-row" [nzSpan]="6" *ngFor="let data of _dashboardListData">
+            <app-logix-insights-dashboard-cards (cardDataEmits)="cardClicked(data)" [model]="data">
+            </app-logix-insights-dashboard-cards>
+        </div>
+    </div>
+    <div class="division">
+        <div class="section-one-div">
+            <div class="graph-one-heading">
+                <div class="graph-header">Transact Overview</div>
+                <div style="padding-top: 5px;">
+                    <i style="font-size: 25px;" nz-icon nzType="more" nzTheme="outline"></i>
+                </div>
+            </div>
+            <div class="graph-container">
+                <canvas style="width: 100% !important;padding: 10px !important;" baseChart height='110'
+                    [datasets]="lineChartData" [labels]="lineChartLabels" [colors]="lineChartColors"
+                    [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                </canvas>
+            </div>
+        </div>
+        <div style="margin-left: 15px;" class="section-two-div">
+            <div class="graph-one-heading">
+                <div class="graph-header">Transaction By Location</div>
+                <div style="padding-top: 5px;">
+                    <i style="font-size: 25px;" nz-icon nzType="more" nzTheme="outline"></i>
+                </div>
+            </div>
+            <div style="display: block; margin-top: 50px; padding-bottom: 10px;
+              overflow: auto;">
+                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                    [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="chartColors"
+                    [legend]="pieChartLegend">
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+</div>

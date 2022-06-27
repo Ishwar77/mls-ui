@@ -1,0 +1,153 @@
+<nz-table class="trans-table-custom-styles" [nzShowPagination]="true" #editRowTable nzBordered [nzData]="_dataItems"
+  nzTableLayout="fixed" [nzPageSize]="14" [nzScroll]="{ y: '700px' }">
+  <thead>
+    <tr>
+      <!-- <th style="text-align: center !important;border-top-left-radius: 10px !important;"
+      class="trans-table-custom-thead" nzWidth="20px" [(nzChecked)]="allChecked"
+      [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)">
+    </th> -->
+      <!-- <th class="trans-table-custom-thead" nzWidth="20px">Form Oid</th>
+      <th class="trans-table-custom-thead" nzWidth="20px">FieldOID</th> -->
+      <th class="trans-table-custom-thead" nzWidth="20px">VariableOID</th>
+      <th class="trans-table-custom-thead" nzWidth="60px">Test_Condition</th>
+      <th class="trans-table-custom-thead" nzWidth="30px">Test Data</th>
+      <!-- <th class="trans-table-custom-thead" nzWidth="20px">Actions</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of editRowTable.data">
+      <ng-container>
+        <!-- <td  class="trans-table-custom-tbody-td" class="trans-table-custom-tbody-td"
+        [(nzChecked)]="allChecked" (nzCheckedChange)="refreshStatus(data,$event)">
+      </td> -->
+        <!-- <td class="trans-table-custom-tbody-td">
+          <input class="trans-table-custom-input" type="text" placeholder="Title" nz-input
+            [(ngModel)]="data['FormOID']" />
+        </td>
+        <td class="trans-table-custom-tbody-td">
+          <input class="trans-table-custom-input" type="text" placeholder="Title" nz-input
+            [(ngModel)]="data['FieldOID']" />
+        </td> -->
+        <td class="trans-table-custom-tbody-td">
+          <input class="trans-table-custom-input" type="text" placeholder="Title" nz-input
+            [(ngModel)]="data['VariableOID']" />
+        </td>
+        <td class="trans-table-custom-tbody-td">
+          <input class="trans-table-custom-input" type="text" placeholder="Title" nz-input
+            [(ngModel)]="data['Test_Condition']" />
+        </td>
+        <td class="trans-table-custom-tbody-td" style="text-align: center;">
+          <button  nz-button nzType="dashed"><i style="color: green;" nz-icon nzType="check-circle" nzTheme="outline" (click)="slider()"></i>Pass</button> &nbsp;
+          <button  nz-button nzType="dashed"><i style="color: red;" nz-icon nzType="close-circle" nzTheme="outline"></i>Fail</button>
+        </td>
+        <!-- <td class="trans-table-custom-tbody-td">
+          Actions </td> -->
+      </ng-container>
+    </tr>
+  </tbody>
+</nz-table>
+
+<nz-drawer nzPlacement="right" [nzWidth]="500" nzClosable="false" [nzVisible]="isVisible"
+  [nzTitle]="title" (nzOnClose)="close()">
+  <div class="ds-slider-container">
+    <div class="ds-slider-form" style="height:calc(100vh - 185px);overflow:auto;">
+      <div *ngFor="let item of dataItems" nz-row class="rules-container-info" style="border: 1px solid black;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;" fxLayout="space-between">
+        <div nz-col >
+          <div nz-row>
+            <div>isString(data) &nbsp;</div>
+            <!-- <div style="font-weight: 600;color: cornflowerblue;">1</div> -->
+          </div>
+          <div nz-row>
+            <div>Data : &nbsp;</div>
+            <div>C49134</div>
+          </div>
+          <div nz-row>
+            <div>Status &nbsp;</div>
+            <div>Pass</div>
+          </div>
+        </div>
+        <!-- <div nz-col>
+          <div class="summary-created-content" nz-tooltip nzTooltipTitle="Created Date" nzTooltipPlacement="bottom">
+          #function
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="ds-slider-actions">
+      <div class="ds-slider-action">
+        <button class="slider-action-button" nz-button nzType="default" (click)="close()">
+          Close
+        </button>
+      </div>
+      <div class="ds-slider-action action-two"></div>
+      <div class="ds-slider-action action-three">
+        <button class="slider-action-button" nz-button nzType="primary" (click)="close()">
+          <i nz-icon nzType="save"></i> Add Rules
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <div fxLayout="column" fxFlexFill fxLayoutGap="20px">
+    <div fxLayout="column" style="overflow: auto;" class="sdtm-slider-body-content">
+      <div fxLayout="column" *ngFor="let item of _UIHandleData['uploadCardsList']">
+        <div class="sdtm-upload-card-container" *ngIf="_UIHandleData['uploadCardsList']">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutGap="10px">
+                <div fxLayout="column">
+                  <i style="font-size: 3rem;opacity: 0.7;" nz-icon nzType="file-done" nzTheme="outline"></i>
+                </div>
+                <div fxLayout="column">
+                  <div fxLayout="column" class="sdtm-upload-card-container-header">
+                    {{item ? item['oid'] : ''}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutGap="20px">
+                <div fxLayout="column">
+                  <nz-upload nzAction="https://maiora-life-sciences.herokuapp.com/api/upload/file/sdtmupload"
+                    (nzChange)="handleChange($event)">
+                    <i [class.filestatus]="success===true" class="sdtm-card-container-icons" nz-icon nz-tooltip
+                      nzTooltipTitle="Upload" nzTooltipPlacement="bottom" nzType="upload" nzTheme="outline"></i>
+                  </nz-upload>
+                </div>
+                <div fxLayout="column">
+                  <a [href]="sampleFilePath">
+                    <i class="sdtm-card-container-icons" nz-tooltip nzTooltipTitle="Download"
+                      nzTooltipPlacement="bottom" nz-icon nzType="download" nzTheme="outline"></i></a>
+                </div>
+                <div fxLayout="column">
+                  <i class="sdtm-card-container-icons" style="color: #f44336;" nz-tooltip nzTooltipTitle="Delete"
+                    nzTooltipPlacement="bottom" nz-icon nzType="delete" nzTheme="outline"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column">
+          <button nzShape="round" class="slider-action-button" nz-button nzType="default"
+            (click)="sliderActionBtnClick('close')">
+            Close
+          </button>
+        </div>
+        <div fxLayout="column">
+          <button nzShape="round" class="slider-action-button" [disabled]="enablerun===false" nz-button nzType="primary"
+            (click)="sliderActionBtnClick('save')">
+            <i nz-icon nzType="play-circle"></i> Run Mapping
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</nz-drawer>

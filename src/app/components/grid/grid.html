@@ -1,0 +1,98 @@
+<div class="app-grid-component-container">
+
+    <nz-table class="custom-scrollbar" #rowSelectionTable [nzData]="dataItems" nzTableLayout="fixed"
+        [nzTotal]="dataItems.length" [nzPageSize]="pageSize" nzBordered="true" nzNoResult="No Data"
+        [nzHideOnSinglePage]="true" [nzScroll]="{ y: 'calc(100vh - 220px)' }">
+        <thead>
+            <tr class="grid-tableHeader">
+                <th nzWidth="45px"></th>
+                <!--  <th [nzChecked]="checkAll" [nzIndeterminate]="indeterminate" >
+
+                </th> -->
+                <ng-template ngFor let-head [ngForOf]="headerAry">
+                    <th *ngIf="(head.selected) && (head.isVisible)" nz-tooltip [nzTooltipTitle]="head.title"
+                        [nzTooltipColor]="'grey'" nzTooltipPlacement="bottom" nzEllipsis> {{ head.title }} </th>
+                </ng-template>
+
+                <th style="text-align: center;">
+                    <button style="color: #fff !important;" *ngIf="headerAry && headerAry.length > 4" nz-button
+                        nzType="text" nz-tooltip nzTooltipTitle="Column Picker" nzTooltipPlacement="bottom"
+                        [nzTooltipColor]="'grey'" nz-dropdown [nzDropdownMenu]="columnPickerItems" nzPlacement="bottom"
+                        nzTrigger="click">
+                        <i style="font-size: 18px;" nz-icon nzType="profile" nzTheme="outline"></i>
+                    </button>
+
+                    <span *ngIf="(!headerAry || headerAry.length <= 4) && allowRowInfo">
+                        Actions
+                    </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [nzShowCheckbox]="true" class="grid-tableRow" [class.selected]="data.selected"
+                *ngFor="let data of rowSelectionTable.data">
+                <!-- nzEllipsis -->
+                <td *ngIf="_isCheckBoxEnable" [nzChecked]="data.selected || true" (nzCheckedChange)="onRowCheck(data)"
+                    nzWidth="45px"></td>
+                <td *ngIf="!_isCheckBoxEnable" nzWidth="45px">&nbsp;</td>
+                <ng-template ngFor let-head [ngForOf]="headerAry">
+                    <td *ngIf="(head.selected) && (head.isVisible)" nzEllipsis nz-tooltip
+                        [nzTooltipTitle]="data[head.property]" nzTooltipPlacement="bottom" [nzTooltipColor]="'teal'">
+                        {{ data[head.property] || 'n/a' }}
+                    </td>
+
+                </ng-template>
+
+                <td [style.width]="!allowRowEdit && !allowRowDeletion ? '45px' : ''">
+                    <div class="grid-action-items flexCenter">
+                        <div *ngIf="allowRowInfo" class="grid-action-item flexCenter">
+                            <button class="grid-item-actions-controls" nz-button nzType="primary" nzShape="circle"
+                                (click)="rowAction(data, 3)" nz-tooltip nzTooltipTitle="Info"
+                                nzTooltipPlacement="bottom">
+                                <i nz-icon class="icon-actions" nzType="info-circle"></i>
+                            </button>
+                        </div>
+                        <!-- Show active Active/Inactive status icons, based on  -->
+                        <div *ngIf="allowRowDeletion" class="grid-action-item flexCenter">
+                            <button class="grid-item-actions-controls" nz-button
+                                [nzDanger]="data['active_flag'] === 1 ? true : false" nzShape="circle" nz-popconfirm
+                                [nzPopconfirmTitle]="'Are you sure to ' + (data['active_flag'] === 1 ? 'InActivate ?' : 'Activate ?') "
+                                nzPopconfirmPlacement="bottom" (nzOnConfirm)="rowAction(data, 2)" nz-tooltip
+                                [nzTooltipTitle]="data['active_flag'] === 1 ? 'Inactivate' : 'Activate'"
+                                nzTooltipPlacement="bottom">
+                                <i *ngIf="data['active_flag'] === 1" nz-icon class="icon-actions" nzType="eye-invisible"
+                                    nzTheme="outline"></i>
+                                <i *ngIf="data['active_flag'] === 0" nz-icon class="icon-actions" nzType="eye"
+                                    nzTheme="outline"></i>
+                            </button>
+                        </div>
+                        <div *ngIf="allowRowEdit" class="grid-action-item flexCenter">
+                            <button class="grid-item-actions-controls" nz-button nzType="primary" nzShape="circle"
+                                (click)="rowAction(data, 1)" nz-tooltip nzTooltipTitle="Edit"
+                                nzTooltipPlacement="bottom">
+                                <i nz-icon class="icon-actions" nzType="edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+
+    <nz-dropdown-menu #columnPickerItems="nzDropdownMenu">
+        <div class="column-pick-container">
+            <div class="column-pick-header">
+                Column Picker ( {{ selectedColCount }} / {{visibleColumns ? visibleColumns.length : 0}} )
+            </div>
+            <div class="column-pick-items custom-scrollbar">
+                <div *ngFor="let col of visibleColumns" class="column-pick-item">
+                    <label nz-checkbox [nzChecked]="col.selected"
+                        (nzCheckedChange)="toggleColumnPick($event, col)">{{col.title}}</label>
+                </div>
+            </div>
+
+        </div>
+
+    </nz-dropdown-menu>
+
+</div>

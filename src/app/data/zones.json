@@ -1,0 +1,68 @@
+[
+    {
+        "zone_id": 1,
+        "aisle_num": "Input",
+        "rack_num": "Input",
+        "row_num": 2,
+        "bin_num": "Input",
+        "dim_uom_id": "",
+        "bin_length": 23,
+        "bin_width": 45,
+        "bin_height": 55
+    },
+    {
+        "zone_id": 2,
+        "aisle_num": "Input",
+        "rack_num": "Input",
+        "row_num": 2,
+        "bin_num": "Input",
+        "dim_uom_id": "",
+        "bin_length": 23,
+        "bin_width": 45,
+        "bin_height": 55
+    },
+    {
+        "zone_id": 3,
+        "aisle_num": "Input",
+        "rack_num": "Input",
+        "row_num": 2,
+        "bin_num": "Input",
+        "dim_uom_id": "",
+        "bin_length": 23,
+        "bin_width": 45,
+        "bin_height": 55
+    },
+    {
+        "zone_id": 4,
+        "aisle_num": "Input",
+        "rack_num": "Input",
+        "row_num": 2,
+        "bin_num": "Input",
+        "dim_uom_id": "",
+        "bin_length": 23,
+        "bin_width": 45,
+        "bin_height": 55
+    },
+    {
+        "zone_id": 5,
+        "aisle_num": "Input",
+        "rack_num": "Input",
+        "row_num": 2,
+        "bin_num": "Input",
+        "dim_uom_id": "",
+        "bin_length": 23,
+        "bin_width": 45,
+        "bin_height": 55
+    },
+    {
+        "zone_id": 6,
+        "aisle_num": "Input",
+        "rack_num": "Input",
+        "row_num": 2,
+        "bin_num": "Input",
+        "dim_uom_id": "",
+        "bin_length": 23,
+        "bin_width": 45,
+        "bin_height": 55
+    }
+]

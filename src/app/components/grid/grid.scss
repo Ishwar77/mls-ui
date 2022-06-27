@@ -1,0 +1,107 @@
+.app-grid-component-container {
+    height: 100%;
+    width: 100%;
+}
+
+.grid-tableHeader {
+    background-color: #837bda;
+    font-size: 13px;
+    letter-spacing: 0.8px;
+}
+
+.grid-tableHeader > th {
+    background-color: transparent;
+    color: #fff !important;
+    padding: 2px 10px !important;
+    border-right: 0px !important;
+}
+
+.grid-tableRow {
+    > td {
+        transition: transform ease-in 0.1s;
+        padding: 4px 10px !important;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        border-right: 0px !important;
+    }
+
+    &:nth-child(2n) {
+        background-color: #fefcff !important;
+    }
+
+    &.selected {
+        background-color: #837bda !important;
+        transform: scale(1.01);
+        &:hover {
+            opacity: 0.95;
+        }
+    }
+
+    &:hover {
+        background-color: #fefcff !important;
+    }
+}
+
+.grid-action-items {
+    width: 100%;
+    padding: 0 10px;
+    margin: 0 5px;
+
+    > .grid-action-item {
+        margin-right: 15px;
+        .grid-item-actions-controls {
+            height: 25px;
+            width: 25px !important;
+            min-width: 25px !important;
+            padding: 0px;
+            > .icon-actions {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.column-pick-container {
+    max-height: 245px;
+    overflow: hidden;
+    background-color: #fff;
+
+    box-shadow: 10px 10px 10px #a8c2ea;
+
+    > .column-pick-header {
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        height: 45px;
+        justify-content: flex-start;
+        padding: 0 10px;
+        border-bottom: solid #f2f2f2 1px;
+    }
+
+    > .column-pick-items {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        height: 200px;
+        overflow: hidden;
+        overflow-y: auto;
+        > .column-pick-item {
+            border-bottom: solid #fdfdfd 1px;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+
+            &:hover {
+                background-color: aliceblue;
+            }
+        }
+    }
+}
+
+.activateClass {
+    border-color: green;
+    color: green;
+}

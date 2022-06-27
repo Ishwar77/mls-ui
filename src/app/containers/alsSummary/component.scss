@@ -1,0 +1,82 @@
+.als-list-container {
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  .als-list-main-row {
+    .als-tab-container {
+    }
+  }
+  .sdtm-run-map-add {
+    background-color: #837bda;
+    color: #fff !important;
+    border-color: #837bda;
+    &:hover {
+      background-color: #837bda;
+      color: #fff !important;
+      border-color: #837bda;
+    }
+  }
+  .sdtm-als-run-map {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+  }
+}
+
+.trans-table-custom-styles {
+  .trans-table-custom-thead {
+    padding: 5px !important;
+    text-align: left !important;
+    background: #837bda !important;
+    color: #ffff;
+    border-right: 0 !important;
+    letter-spacing: 0.8px !important;
+    font-weight: 600;
+  }
+  .trans-table-custom-tbody-td {
+    padding: 5px !important;
+    > .trans-table-custom-input {
+      outline: 0 !important;
+      border: 0 !important;
+      letter-spacing: 0.5px !important;
+      color: #514949 !important;
+      line-height: 2 !important;
+    }
+    > .trans-table-custom-select {
+      outline: 0 !important;
+      border: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+    }
+  }
+}
+
+.sdtm-slider-body-content {
+  height: calc(100% - 60px);
+  padding: 10px 5px 5px 0px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.sdtm-upload-card-container {
+  box-shadow: 2px 2px 2px 0px #ebebeb;
+  border-radius: 5px;
+  border: 1px solid #f4f4f4;
+  padding: 10px;
+  margin-bottom: 20px;
+  overflow: auto;
+  .sdtm-upload-card-container-header {
+    letter-spacing: 0.8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .sdtm-card-container-icons {
+    font-size: 1.5rem;
+    color: #8a8a8a;
+    cursor: pointer;
+  }
+}
+
+.filestatus {
+  color: rgb(2, 66, 2);
+}
+

@@ -1,0 +1,145 @@
+@import "../../../../custom-theme.scss";
+// .logo {
+//     background: $nav-section-color;
+//     height: 60px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     border-bottom: 2px solid gray;
+//     border-radius: 5px;
+
+//     &focus {
+//         border: 0 !important;
+//     }
+//     > div {
+//         color: $bg-light-two;
+//     }
+
+// }
+
+
+// .list_items{
+//     pointer-events: none;
+// }
+
+img {
+    height: 70px;
+    width: auto;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+
+ .dashboardIcon {
+    // color: #f7a22b; 
+    color: #002147;
+    padding: 0 10px;
+    font-size: 24px;
+  }
+
+  .bgColor {
+      background-color: #fff;
+  }
+
+nz-header {
+    background: $primary-color;
+    color: $font-color;
+    padding: 0 10px;
+    height: 70px !important;
+    border-bottom: 1px solid #ebebeb;
+    margin: 20px 10px 4px 10px;
+    border-radius: 5px;
+    .main-header {
+        place-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+        margin-top: -9px;
+    }
+    .toolabar-end {
+        .toolbar-space {
+            margin-right: 20px;
+        }
+        .icon-custom {
+            font-size: 16px !important;
+            cursor: pointer;
+        }
+    }
+}
+
+nz-content {
+    margin: 2px 4px 2px 4px;
+}
+
+nz-breadcrumb {
+    margin: 0px 10px;
+}
+
+.inner-content {
+    padding: 5px 8px;
+    //    background: $secondary-color;
+    height: calc(100vh - 55px);
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+nz-footer {
+    text-align: center;
+    padding: 10px !important;
+    background-color: $nav-section-color;
+    color: $bg-light-one;
+}
+
+.trigger {
+    font-size: 18px;
+    color: $font-color;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.trigger:hover {
+    color: #1890ff;
+}
+
+.ant-badge-count {
+    z-index: auto !important;
+    min-width: 15px !important;
+    height: 15px !important;
+    padding: 0 5px !important;
+    color: #fff;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 16px !important;
+}
+
+nz-submenu {
+    padding-left: 0px !important;
+}
+
+.layout-container {
+    min-height: 100vh;
+}
+
+.active-tab {
+    outline: 0 !important;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+}
+
+.active-link {
+    background: $tertiary-color;
+    box-shadow: 0 0 6px 1px rgb(115 103 240 / 70%);
+    border-radius: 2px;
+    color: #ffff !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    &:hover {
+        background: $tertiary-color;
+        box-shadow: 0 0 6px 1px rgb(115 103 240 / 70%);
+    }
+}
+
+.app-sidebar-container {
+    height: calc(100vh - 56px);
+    overflow: auto;
+}

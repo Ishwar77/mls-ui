@@ -1,0 +1,179 @@
+<div>
+  <div style="margin: 4px;
+  padding-right: 12px;">
+    <button style="border-radius: 50px;" nz-button nzType="primary">
+      <i nz-icon nzType="arrow-left" (click)="goback()" style="cursor: pointer;"></i> </button>      </div>
+</div>
+<div>
+  <div class="main-cards">
+    <div class="main-cards-cards">
+      <div style="padding:10px;" *ngFor="let item of data">
+        <nz-card style="width:500px;cursor: pointer; box-shadow: 0px 1px 3px #d1d1d1"  [nzBordered]="false"
+          [nzActions]="[footer]" [nzTitle]="item.title"  [nzExtra]="extraTemplate">
+          <p (click)="gotofolder(item)">{{item.description}}</p>
+        </nz-card>
+        <ng-template #extraTemplate>
+          <a (click)="open(1,item)"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+      </ng-template>
+        <ng-template #footer>
+          <div class="footer">
+            <p style="padding-left: 10px;">{{item.studyStatus}}</p>
+            <a style="width: 20% !important;"><i nz-icon nzType="bell" nzTheme="outline"></i></a>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+  </div>
+  <div class="plus-btn">
+    <div class="action-buttons">
+      <!-- <button class="slider-action-button" nz-button nzType="primary" (click)="sliderActionBtnClick('close')">
+        <i nz-icon nzType="upload" nzTheme="outline"></i> Upload ALS
+      </button>
+      <button class="slider-action-button" nz-button nzType="primary" (click)="sliderActionBtnClick('close')">
+        <i nz-icon nzType="diff" nzTheme="outline"></i>Create ALS
+      </button> -->
+      <button class="floating-action" nz-button nzType="primary" nzSize="large" nzShape="circle" (click)="open(2,data)">
+        <i nz-icon nzType="plus"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<nz-drawer [nzClosable]="false" [nzVisible]="_isVisible" nzPlacement="right" [nzWidth]="850" [nzTitle]="sliderTitle"
+  (nzOnClose)="close()">
+  <form *nzDrawerContent nz-form>
+    <div class="ds-slider-container">
+      <div class="ds-slider-form">
+        <nz-tabset nzSize="large">
+          <nz-tab nzTitle="Basic">
+            <div class="formInput-container">
+              Title <input type="text" [disabled]="formAction === 1" required placeholder="Title" name="Title" nz-input
+                [(ngModel)]="sliderModel['title']" />
+            </div>
+
+            <div class="formInput-container">
+              Description <textarea [disabled]="formAction === 1" required placeholder="Description" name="Description"
+                nz-input [(ngModel)]="sliderModel['description']"></textarea>
+            </div> 
+
+            <div style="margin: 10px 0px 10px 0px;">
+              <nz-upload nzAction="https://maiora-life-sciences.herokuapp.com/api/upload/file/als" nzType="drag"
+                [nzMultiple]="false" (nzChange)="handleChangeals($event)">
+                <div style="height: 92px">
+                  <p class="ant-upload-drag-icon">
+                    <i nz-icon nzType="cloud-upload" nzTheme="outline"></i>
+                  </p>
+                  <p class="ant-upload-text">ALS File</p>
+                </div>
+              </nz-upload>
+            </div>
+            <div>
+              <nz-upload nzAction="https://maiora-life-sciences.herokuapp.com/api/upload/file/sample" nzType="drag"
+                [nzMultiple]="true" (nzChange)="handleChangesample($event)">
+                <div style="height: 92px">
+                  <p class="ant-upload-drag-icon">
+                    <i nz-icon nzType="cloud-upload" nzTheme="outline"></i>
+                  </p>
+                  <p class="ant-upload-text">Sample Data Files</p>
+                </div>
+              </nz-upload>
+            </div>
+          </nz-tab>
+          <nz-tab nzTitle="Advanced" [nzDisabled]="advancedtab === false">
+            <div nz-row>
+              <div nz-col>
+                <div>
+                  <nz-tabset [(nzSelectedIndex)]="index" nzType="editable-card" nzHideAdd>
+                    <nz-tab *ngFor="let tab of tabs; let i = index" [nzTitle]="tab" (nzClick)="filteronsheets(tab)">
+                      <div class="form-grid-container" *ngIf="resourceListValue.length">
+                        <app-grid-component [pageSize]="10" [dataItems]="resourceListValue" [allowRowInfo]="false"
+                          (onSelect)="gridAction(tab,$event)">
+                        </app-grid-component>
+                      </div>
+                    </nz-tab>
+                  </nz-tabset>
+                </div>
+              </div>
+              <!-- <div nz-col nzSpan="3" style="margin: 0px 33px;">
+                <div style="display: flex;flex-direction: column;border: 1px solid #cdc8c8;border-radius: 6px;">
+                  <i style="margin: 6px;color:red" nz-icon nzType="warning" nzTheme="outline"></i>
+                  <span style="text-align: center;font-weight: 600;">9/27 ignored</span>
+                </div>
+              </div> -->
+            </div>
+            <!-- <div style="display: flex;">
+              <div>
+                <nz-tabset style="width: 57vh;" [(nzSelectedIndex)]="index" nzType="editable-card" nzHideAdd>
+                  <nz-tab *ngFor="let tab of tabs; let i = index"  [nzTitle]="tab">
+                    <div style="width: 50vh;">
+                      <app-grid-component [pageSize]="10" [dataItems]="resourceListValue" [allowRowInfo]="false">
+                      </app-grid-component>
+                    </div>
+                    Content of {{ tab }}
+                  </nz-tab>
+                </nz-tabset>
+              </div>
+              <div style="border: 1px solid #cdc8c8;
+              height: 55px;
+              width: 97px;
+              margin-left: 45px;
+              border-radius: 6px;">
+                <div style="display: flex;flex-direction: column;">
+                  <i style="margin: 6px;color:red" nz-icon nzType="warning" nzTheme="outline"></i>
+                  <span style="text-align: center;font-weight: 600;">9/27 ignored</span>
+                </div>
+                <button nz-col style=" border-radius: 6px;
+                height: 50px;
+                display: flex;
+                flex-direction: column;margin: 10px;" nz-button nzType="primary">
+                  <i style="margin: 1px;width: 100%;"  nz-icon nzType="file-text" nzTheme="outline"></i>
+                  <span style="text-align: center;font-weight: 600;margin: 0px 7px 0px 7px;">ALS</span> </button>
+                <button nz-col style=" border-radius: 6px;
+                height: 50px;
+                display: flex;
+                flex-direction: column;margin: 0px 10px 10px 10px;" nz-button nzType="primary">
+                  <i style="margin: 1px;width: 100%;"  nz-icon nzType="file-text" nzTheme="outline"></i>
+                  <span style="text-align: center;font-weight: 600;margin: 0px 5px 0px 5px;">Data</span> </button>
+              </div>
+
+            </div> -->
+          </nz-tab>
+        </nz-tabset>
+      </div>
+
+      <div class="ds-slider-actions">
+        <div class="ds-slider-action action-one">
+          <button class="slider-action-button" nz-button nzType="default" (click)="sliderActionBtnClick('close')">
+            Close
+          </button>
+        </div>
+        <div class="ds-slider-action action-three">
+
+          <button class="slider-action-button" *ngIf="formAction === 1" nz-button nzType="primary"
+            (click)="sliderActionBtnClick('edit')">
+            <i nz-icon nzType="edit"></i> Edit
+          </button>
+          <button style="margin:0px 10px 0px 10px;" class="slider-action-button" *ngIf="advancedtab === true " nz-button
+            nzType="primary" (click)="sliderActionBtnClick('sync')">
+            <i nz-icon nzType="sync" nzTheme="outline"></i> SYNC
+          </button>
+          <button class="slider-action-button" *ngIf="advancedtab === true " nz-button nzType="primary"
+            (click)="sliderActionBtnClick('save')">
+            <i nz-icon nzType="save"></i> SAVE
+          </button>
+          <button class="slider-action-button" *ngIf="formAction === 2 && advancedtab === false" nz-button
+            nzType="primary" (click)="sliderActionBtnClick('next')">
+            <i nz-icon nzType="plus-square" nzTheme="outline"></i> Create ALS
+          </button>
+
+          <button class="slider-action-button" *ngIf="formAction === 3" nz-button nzType="primary"
+            (click)="sliderActionBtnClick('update')">
+            <i nz-icon nzType="check"></i> UPDATE
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</nz-drawer>

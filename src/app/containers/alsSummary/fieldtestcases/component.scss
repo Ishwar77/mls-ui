@@ -1,0 +1,79 @@
+.sdtm-upload-card-container {
+    box-shadow: 2px 2px 2px 0px #ebebeb;
+    border-radius: 5px;
+    border: 1px solid #f4f4f4;
+    padding: 10px;
+    margin-bottom: 20px;
+    .sdtm-upload-card-container-header {
+        letter-spacing: 0.8px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .sdtm-card-container-icons {
+        font-size: 1.5rem;
+        color: #8a8a8a;
+        cursor: pointer;
+    }
+}
+
+.trans-table-custom-styles {
+    .trans-table-custom-thead {
+      padding: 5px !important;
+      text-align: left !important;
+      background: #639CD0 !important;
+      color: #ffff;
+      border-right: 0 !important;
+      letter-spacing: 0.8px !important;
+      font-weight: 600;
+    }
+    .trans-table-custom-tbody-td {
+      padding: 0 !important;
+      > .trans-table-custom-input {
+        outline: 0 !important;
+        border: 0 !important;
+        letter-spacing: 0.5px !important;
+        color: #514949 !important;
+        line-height: 2 !important;
+      }
+      > .trans-table-custom-select {
+        outline: 0 !important;
+        border: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+    }
+  }
+  
+  .ds-slider-container {
+    > .ds-slider-form {
+      height: calc(100% - 65px);
+  
+      .formInput-container {
+        margin: 10px 0;
+      }
+  
+      > .formInput-container-config {
+        // background-color: #e2e2e2;
+        // height: auto;
+        // padding: 20px 10px;
+        // margin: 10px 0;
+        // border-radius: 5px;
+        // box-shadow: 2px 2px 5px #f4f4f4;
+  
+        > .formInput-container-config-inputs {
+          > input {
+            margin: 10px 0;
+            height: 900px;
+          }
+        }
+      }
+    }
+    > .ds-slider-actions {
+      border-top: solid silver 1px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+    }
+  }

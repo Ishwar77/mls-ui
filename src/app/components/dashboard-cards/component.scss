@@ -1,0 +1,42 @@
+.card-div {
+  background-color: #fff;
+  width: auto;
+  height: auto;
+  border-radius: 7px;
+  cursor: pointer;
+  .main-heading-div {
+    display: flex;
+    flex-direction: row;
+    place-content: space-between;
+    align-items: flex-start;
+    .first-section-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .icon-main-div {
+        background-color: #fff;
+        text-align: center;
+        padding: 15px;
+        border-radius: 50px;
+        margin-right: 10px;
+      }
+    }
+    .second-section-container {
+      .percentage-value-content{
+        font-size: 15px;
+        font-weight: 500;
+        color: #2d3f4c;
+      }
+    }
+  }
+  .heading {
+    font-size: larger;
+    font-weight: 800;
+    color: #2d3f4c;
+  }
+  .numbers {
+    font-size: x-large;
+    font-weight: 800;
+    color: #2d3f4c;
+  }
+}

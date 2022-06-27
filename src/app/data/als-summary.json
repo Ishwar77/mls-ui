@@ -1,0 +1,28 @@
+{
+    "tabSwitchDataList": [
+        {
+            "name": "Field",
+            "key": "field",
+            "stage": 1,
+            "icon": "field-string"
+        },
+        {
+            "name": "Dictionary",
+            "key": "datadictionary",
+            "stage": 2,
+            "icon": "read"
+        },
+        {
+            "name": "Matrix",
+            "key": "matrix",
+            "stage": 4,
+            "icon": "project"
+        },
+        {
+            "name": "Visits",
+            "key": "visits",
+            "stage": 5,
+            "icon": "eye"
+        }
+    ]
+}

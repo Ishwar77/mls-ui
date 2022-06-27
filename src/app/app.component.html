@@ -1,0 +1,30 @@
+<!-- <div class="intelogiz-app-main-container">
+  <div *ngIf="pageTitle === 'Authentication';else showlogin">
+    <div nz-row class="app-root-component-body">
+      <div nz-col class="app-root-component-body-contents" nzSpan="24">
+          <router-outlet></router-outlet>
+      </div>
+  </div>
+  </div>
+  <ng-template #showlogin>
+    <layout-skeleton></layout-skeleton>
+  </ng-template>
+</div> -->
+
+<div class="intelogiz-app-main-container">
+  <div *ngIf="isuserLoggedIn;else showlogin">
+    <layout-skeleton></layout-skeleton>
+  </div>
+  <ng-template #showlogin>
+    <div nz-row class="app-root-component-body">
+      <div nz-col class="app-root-component-body-contents" nzSpan="24">
+          <router-outlet></router-outlet>
+      </div>
+  </div>
+  </ng-template>
+</div>
+
+<!-- <div class="intelogiz-app-main-container">
+  <layout-skeleton></layout-skeleton>
+</div> -->
+

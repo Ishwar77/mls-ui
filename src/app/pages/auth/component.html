@@ -1,0 +1,113 @@
+<!-- <div nz-row>
+  <div>
+
+  </div>
+  <div>
+      <div class="jc-decoration">
+          <div class="jc-decoration-item jc-decoration-item-1">
+              <svg version="1.1" x="0px" y="0px" viewBox="0 0 1446 970" width="1446" height="970"
+                  preserveAspectRatio="none">
+                  <path
+                      d="M-0.000,33.000 C-0.000,33.000 80.000,54.000 113.000,83.000 C146.000,112.000 147.000,152.000 183.000,174.000 C219.000,196.000 288.000,172.000 334.000,193.000 C380.000,214.000 379.000,282.000 427.000,317.000 C475.000,352.000 548.000,336.000 588.000,371.000 C628.000,406.000 614.000,483.000 647.000,513.000 C680.000,543.000 786.000,537.000 841.000,587.000 C896.000,637.000 885.000,739.000 932.000,776.000 C979.000,813.000 1026.000,796.000 1069.000,817.000 C1112.000,838.000 1135.000,865.000 1189.000,893.000 C1243.000,921.000 1433.000,970.000 1433.000,970.000 L1446.000,0.000 L-0.000,33.000 Z">
+                  </path>
+              </svg>
+          </div>
+          <div class="jc-decoration-item jc-decoration-item-2">
+              <svg version="1.1" x="0px" y="0px" viewBox="0 0 1446 970" width="1446" height="970"
+                  preserveAspectRatio="none">
+                  <path
+                      d="M-0.000,33.000 C-0.000,33.000 80.000,54.000 113.000,83.000 C146.000,112.000 147.000,152.000 183.000,174.000 C219.000,196.000 288.000,172.000 334.000,193.000 C380.000,214.000 379.000,282.000 427.000,317.000 C475.000,352.000 548.000,336.000 588.000,371.000 C628.000,406.000 614.000,483.000 647.000,513.000 C680.000,543.000 786.000,537.000 841.000,587.000 C896.000,637.000 885.000,739.000 932.000,776.000 C979.000,813.000 1026.000,796.000 1069.000,817.000 C1112.000,838.000 1135.000,865.000 1189.000,893.000 C1243.000,921.000 1433.000,970.000 1433.000,970.000 L1446.000,0.000 L-0.000,33.000 Z">
+                  </path>
+              </svg>
+          </div>
+          <img class="jc-decoration-image" src="../assets/img/home-1-748x528.png" alt="" width="748" height="528"
+              title="">
+      </div>
+  </div>
+</div> -->
+
+<div class="app-page-Auth">
+  <div class="logout-window" *ngIf="hasLoggedIn===true">
+    Do not reload page...
+  </div>
+  <div class="role-window" *ngIf="showLogin===false">
+    <div class="page-title">
+      <!-- <nz-avatar nzSize="small" nzIcon="user" style="background-color:#87d068;"></nz-avatar> Authentication -->
+      <img nz-image width="300px" height="200px" src="assets\images\Loginimg.jpeg" alt="" />
+    </div>
+    <div nz-col style="text-align: center;
+    margin: 20px;">
+      <div nz-col style=" font-size: large;
+    font-weight: 700;">
+        <span> Welcome to MLS </span>
+      </div>
+      <span> Login to Maiora Lifescience Project </span>
+      <div nz-col nzSpan="12" style="text-align: center;
+      margin: 10px 90px;">
+        <!-- <nz-avatar style="background-color:#1890ff;cursor: pointer;" [nzShape]="'square'" [nzSize]="64" nzText="ADMIN">
+        </nz-avatar> -->
+        <button nz-button nzType="primary" nzBlock (click)="role('admin')">
+          <!-- <i nz-icon nzType="download"></i> -->
+          ADMIN
+        </button>
+      </div>
+      <div nz-col nzSpan="12" style="text-align: center;
+      margin: 10px 90px;">
+        <!-- <nz-avatar style="background-color:#1890ff;cursor: pointer;" [nzShape]="'square'" [nzSize]="64" nzText="USER">
+        </nz-avatar> -->
+        <button nz-button nzType="primary" nzBlock (click)="role('user')">
+          <!-- <i nz-icon nzType="download"></i> -->
+          USER
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-window" *ngIf="showLogin===true">
+    <div class="page-title">
+      <!-- <i nz-icon nzType="key" nzTheme="outline"></i> Authentication -->
+      <img nz-image width="300px" height="200px" src="assets\images\Loginimg.jpeg" alt="" />
+    </div>
+    <div class="page-content">
+      <div>
+        <input type="text" nz-input [(ngModel)]="username" placeholder="Username" nzSize="large" required />
+      </div>
+      <!-- <div>
+        <input [type]="hide ? 'password' : 'text'" nz-input [(ngModel)]="password" placeholder="Password" nzSize="large" required />
+      </div> -->
+      <div>
+        <nz-input-group nzSize="large" [nzSuffix]="suffixTemplate">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            nz-input
+            placeholder="Password"
+            [(ngModel)]="password"
+            required
+          />
+        </nz-input-group>
+        <ng-template #suffixTemplate>
+          <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+        </ng-template>
+      </div>
+      <div style="
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+              margin: 20px 0;">
+        <!-- <button class="flexCenter" nz-button nzType="default" style="margin-right: 20px" (click)="back()">
+          Back </button> -->
+        <button class="flexCenter" nz-button nzType="default" style="margin-right: 20px" (click)="reset()">
+          Reset </button>
+        <button class="flexCenter" nz-button nzType="primary" (click)="login()">Login</button>
+      </div>
+      <div>
+        <!-- <a href="mailto:reachus@maiora.co?subject=Do it Right Assistance Required">Help and
+          Support</a> -->
+        <a (click)="back()">Back</a>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

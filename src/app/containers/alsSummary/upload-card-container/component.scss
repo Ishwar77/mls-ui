@@ -1,0 +1,17 @@
+.sdtm-upload-card-container {
+    box-shadow: 2px 2px 2px 0px #ebebeb;
+    border-radius: 5px;
+    border: 1px solid #f4f4f4;
+    padding: 10px;
+    margin-bottom: 20px;
+    .sdtm-upload-card-container-header {
+        letter-spacing: 0.8px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .sdtm-card-container-icons {
+        font-size: 1.5rem;
+        color: #8a8a8a;
+        cursor: pointer;
+    }
+}
